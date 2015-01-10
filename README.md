@@ -1,4 +1,4 @@
-CodeIQ
+algorithm-problems
 ======
 
-My answers to problems of CodeIQ.
+My answers to problems of algorithm.
