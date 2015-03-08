@@ -10,7 +10,7 @@ public class Main {
     // x in [0, n - 1] where n is the number of vertical lines
     // y in [0, L] where L is the length of a vertical line
     boolean[][] crossPos = null;  // crossPos[x, y] is true if a vertical line crosses a horizontal line at (x, y)
-    Position[][] nextPos = null;  // transfer from Position(x, y) to nextPos[x, y]
+    Point[][] nextPos = null;  // transfer from Point(x, y) to nextPos[x, y]
     int L;  // length of a line
     
     // input from console
@@ -22,7 +22,7 @@ public class Main {
       int m = Integer.parseInt(elems[2]);  // number of horizontal lines
       
       crossPos = new boolean[n][L + 1];
-      nextPos = new Position[n][L + 1];
+      nextPos = new Point[n][L + 1];
       
       for (int i = 0; i < m; i++) {
         String posLine = br.readLine();
@@ -31,8 +31,8 @@ public class Main {
         int b = Integer.parseInt(pos[1]);  // y of left line, y_left = b
         int c = Integer.parseInt(pos[2]);  // y of right line, y_right = c
         
-        Position posLeft = new Position(a - 1, b);
-        Position posRight = new Position(a, c);
+        Point posLeft = new Point(a - 1, b);
+        Point posRight = new Point(a, c);
         
         crossPos[posLeft.x][posLeft.y] = true;
         crossPos[posRight.x][posRight.y] = true;
@@ -41,7 +41,7 @@ public class Main {
       }
     }
     
-    // current position Position(xc, yc)
+    // current position Point(xc, yc)
     int xc = 0;
     
     // (0, L)からスタート。
@@ -49,7 +49,7 @@ public class Main {
     // 一番上(x, 0)まで行ったら終了。
     for (int yc = L; yc >= 0; yc--) {
       if (crossPos[xc][yc]) {
-        Position p = nextPos[xc][yc];
+        Point p = nextPos[xc][yc];
         xc = p.x;
         yc = p.y;
       }
@@ -60,11 +60,11 @@ public class Main {
   
 }
 
-class Position {
+class Point {
   int x;
   int y;
 
-  public Position(int x, int y) {
+  public Point(int x, int y) {
     this.x = x;
     this.y = y;
   }
