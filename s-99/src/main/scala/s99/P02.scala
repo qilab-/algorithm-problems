@@ -19,4 +19,5 @@ object P02 {
       case _                => throw new NoSuchElementException("The list size is less than 2.")
     }
   }
+
 }
